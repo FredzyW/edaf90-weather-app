@@ -1,8 +1,30 @@
 # WeatherApp
 
 ## Description
+ 
+A weather app that shows the current weather of a city of choice and a 3-day forecast. The user inputs the name of the city to be displayed. The main component is the weather component, which displays the current temperature, humidity, wind speed, and other weather data. Another component is the forecast component, which displays the forecasted temperature for the next three days. The app fetches data from an external server using the [OpenWeather API](https://openweathermap.org/current#name) to get current weather data for the displayed location. We plan to style our page using Angular Material.
 
-Weather App: A weather app that shows the current weather of a city and a 3-day forecast. The main component is the weather component, which displays the current temperature, humidity, wind speed, and other weather data. Another component is the forecast component, which displays the forecasted temperature for the next three days. The app would fetch data from an external server using the OpenWeather API.
+We plan to have the components:
+
+- Weather
+  - Temperature (actual and "feels like"), humidity, wind speed, and more
+- Forecast
+  - Displays the temperature and the weather for the coming three days
+- Searchbar
+  - Includes the form
+  - Also displays search suggestions
+- Favorite cities’
+  - A quick access list to easily display your favorite cities, saved in local storage
+
+![Stucture](/structure.drawio.png)
+
+
+
+## Dependencies
+
+```bash
+npm install --save @angular/material @angular/cdk @angular/animations
+```
 
 ## API Keys
 
