@@ -1,0 +1,9 @@
+# POST http://api.openweathermap.org/data/2.5/forecast?lat=13.1932&lon=55.7058&cnt=7&appid=8b7bc13b8ea82081977f0d6d80689a0e HTTP/1.1
+# Content-Type: application/json
+
+POST https://api.openweathermap.org/data/2.5/weather?q=Lund&appid=8b7bc13b8ea82081977f0d6d80689a0e HTTP/1.1
+Content-Content-Type: application/json
+
+
+# POST http://api.openweathermap.org/geo/1.0/direct?q=Lund&appid=8b7bc13b8ea82081977f0d6d80689a0e HTTP/1.1
+# Content-Type: application/json
