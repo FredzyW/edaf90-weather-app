@@ -65,10 +65,10 @@ export class ApiService {
       const data = response.data;
       return (
         {
-        temp: data.main.temp,
-        feels_like: data.main.feels_like,
-        temp_min: data.main.temp_min,
-        temp_max: data.main.temp_max,
+        temp: this.kelvinToCelsius(data.main.temp),
+        feels_like: this.kelvinToCelsius(data.main.feels_like),
+        temp_min: this.kelvinToCelsius(data.main.temp_min),
+        temp_max: this.kelvinToCelsius(data.main.temp_max),
         weather: data.weather[0]
       }
       )
@@ -79,9 +79,9 @@ export class ApiService {
     });
   }
 
-  // kelvinToCelsius(degrees: number) {
-  //   return (degrees-273.15);
-  // }
+  kelvinToCelsius(degrees: number) {
+    return (degrees-273.15);
+  }
 
   isTwelveOClock(time: string) {
     return time.includes("12:00:00") ? true : false;
@@ -109,10 +109,10 @@ export class ApiService {
         ?.map((value: ForecastResponse) => value)
         .filter((value: ForecastResponse) => this.isTwelveOClock(value?.['dt_txt']))
         .map((value: ForecastResponse) => ({
-          temp: value.main.temp,
-          feels_like: value.main.feels_like,
-          temp_min: value.main.temp_min,
-          temp_max: value.main.temp_max,
+          temp: this.kelvinToCelsius(value.main.temp),
+          feels_like: this.kelvinToCelsius(value.main.feels_like),
+          temp_min: this.kelvinToCelsius(value.main.temp_min),
+          temp_max: this.kelvinToCelsius(value.main.temp_max),
           weather: value.weather[0]
         }))
         )
