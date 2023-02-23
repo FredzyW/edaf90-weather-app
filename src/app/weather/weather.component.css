@@ -3,8 +3,18 @@ mat-card {
     justify-content: center;
     
     width: 40%;
-    margin: 10px;
 }
+
+mat-card-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2vh;
+}
+
+mat-card-title > * {
+    margin-right: 2vh;
+}
+
 
 .weather-attribute {
     display: flex;
@@ -12,27 +22,17 @@ mat-card {
     justify-content: space-between;
     
     height: fit-content;
-    margin-top: 10px;
 
     align-items: center;
 }
 
-.weather-attribute > p {
-    margin: 10px;
-    align-self: center;
-}
-
-.weather-attribute > img {
-    align-self: center;
-}
-
 .tile-value {
-    height: 40px;
-    width: 40px;
+    height: 8vh;
+    width: 8vh;
     
     border: solid;
-    border-radius: 15px;
+    border-radius: 4vh;
 
     text-align: center;
-    line-height: 40px;
+    line-height: 8vh;
 }
