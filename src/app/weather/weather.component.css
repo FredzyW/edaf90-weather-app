@@ -1,6 +1,38 @@
 mat-card {
-    width: 40%;
     display: flex;
     justify-content: center;
+    
+    width: 40%;
     margin: 10px;
+}
+
+.weather-attribute {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    height: fit-content;
+    margin-top: 10px;
+
+    align-items: center;
+}
+
+.weather-attribute > p {
+    margin: 10px;
+    align-self: center;
+}
+
+.weather-attribute > img {
+    align-self: center;
+}
+
+.tile-value {
+    height: 40px;
+    width: 40px;
+    
+    border: solid;
+    border-radius: 15px;
+
+    text-align: center;
+    line-height: 40px;
 }
