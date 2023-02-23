@@ -1,1 +1,23 @@
-<p>weather works!</p>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Location</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-grid-list cols="3" rowHeight="2:1">
+            <mat-grid-tile id="current-temperature-actual">
+                <p>Actual temperature</p>
+                <div>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile id="current-temperature-feels-like">
+                <p>Feels like</p>
+            </mat-grid-tile>
+            <mat-grid-tile id="current-weather">
+                <p>Weather</p>
+            </mat-grid-tile>
+            <mat-grid-tile id="current-wind-speed" colspan="3">
+                <p>Wind speed: 3 m/s</p>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </mat-card-content>
+</mat-card>

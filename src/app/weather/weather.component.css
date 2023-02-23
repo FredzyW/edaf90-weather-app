@@ -1,0 +1,6 @@
+mat-card {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
