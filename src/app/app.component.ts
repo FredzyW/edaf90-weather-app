@@ -11,4 +11,9 @@ export class AppComponent {
   constructor(public apiService: ApiService) {
  
   }
+
+  onChange(city: string) {
+    console.log(city)
+    this.apiService.getWeatherByCity(city).then(value => console.log(value))
+  }
 }

@@ -1,5 +1,3 @@
 <div class="">
-    <button (click)="apiService.getForecastByCity('Lund')">
-        test
-    </button>
+    <app-input (city)="onChange($event)"></app-input>
 </div>
