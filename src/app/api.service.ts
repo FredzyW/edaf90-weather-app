@@ -9,6 +9,18 @@ type WeatherResponse = {
   ]
 }
 
+type Weather = {
+  temp: number,
+  feels_like: number,
+  temp_max: number,
+  temp_min: number,
+  weather: {
+    description: string,
+    icon: string,
+    id: number,
+    main: string
+  }
+}
 type ForecastResponse = {
   dt: number,
   dt_txt: string,
@@ -45,16 +57,12 @@ type ForecastResponse = {
   providedIn: 'root'
 })
 export class ApiService {
-  private apiKey: string|undefined;
-
   constructor() { }
 
   ngOnInit() {
-    // console.log('init');
-    this.apiKey = environment.apiKey;
   }
 
-  getWeatherByCity(city: string) {
+  getWeatherByCity(city: string): Promise<Weather|void> {
     return axios({
       url: `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${environment.apiKey}`,
       method: "POST", 
@@ -63,15 +71,14 @@ export class ApiService {
       }
     }).then(response => {
       const data = response.data;
-      return (
-        {
-        temp: this.kelvinToCelsius(data.main.temp),
-        feels_like: this.kelvinToCelsius(data.main.feels_like),
-        temp_min: this.kelvinToCelsius(data.main.temp_min),
-        temp_max: this.kelvinToCelsius(data.main.temp_max),
-        weather: data.weather[0]
+      const output: Weather = {
+          temp: this.kelvinToCelsius(data.main.temp),
+          feels_like: this.kelvinToCelsius(data.main.feels_like),
+          temp_min: this.kelvinToCelsius(data.main.temp_min),
+          temp_max: this.kelvinToCelsius(data.main.temp_max),
+          weather: data.weather[0]
       }
-      )
+      return output;
     })
     .catch(e => {
       // throw e;
