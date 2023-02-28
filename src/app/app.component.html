@@ -1,5 +1,7 @@
 <div>
   <app-input (city)="onChange($event)"></app-input>
-  <app-weather [location]="currentCity" />
-  <app-favorite-cities></app-favorite-cities>
+  <div class="grid-container">
+    <app-weather [location]="currentCity" />
+    <app-favorite-cities></app-favorite-cities>
+  </div>
 </div>

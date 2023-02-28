@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FavoriteCitiesService } from '../favorite-cities.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-favorite-cities',
@@ -15,6 +16,12 @@ export class FavoriteCitiesComponent {
   // }
 
   constructor(private favoriteCitiesService: FavoriteCitiesService) {
-    this.favoriteCities = favoriteCitiesService.getFavoriteCities();
+    favoriteCitiesService.getFavoriteCities().subscribe(
+      updatedCities => {
+        this.favoriteCities = updatedCities;
+      }
+    );
+    this.favoriteCities = JSON.parse(localStorage.getItem('cities') || '[]')
+    // this.favoriteCities = favoriteCitiesService.getFavoriteCities().getValue();
   }
 }
