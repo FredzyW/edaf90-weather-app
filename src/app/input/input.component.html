@@ -1,6 +1,14 @@
-<mat-form-field class="example-form-field">
-  <input matInput type="text" placeholder="Clearable input" [(ngModel)]="value" (keyup.enter)="changeCity()">
-  <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-    <mat-icon>close</mat-icon>
-  </button>
-</mat-form-field>
+<div class="searchbar-container">
+    <mat-form-field class="example-form-field">
+        <!-- <label>Search bar</label> -->
+        <input [matAutocomplete]="auto" matInput type="text" placeholder="Enter city:" [(ngModel)]="value" (keyup.enter)="changeCity()">
+        <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+    <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let city of allCities | async" [value]="city">
+            {{ city }}
+        </mat-option>
+    </mat-autocomplete>
+</div>
