@@ -4,8 +4,8 @@
             <img src={{iconSrc}} width="50" />
             {{location}}
         </mat-card-title>
-        <button mat-icon-button color="warn" (click)="addToFavorites(location)" class="favorite-icon">
-            <mat-icon>favorite</mat-icon>
+        <button mat-icon-button color="warn" (click)="removeFromFavorites(location)" class="favorite-icon">
+            <mat-icon>remove_circle</mat-icon>
         </button>
     </mat-card-header>
     <mat-card-content>
