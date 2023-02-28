@@ -12,7 +12,8 @@ type Weather = {
     icon: string,
     id: number,
     main: string
-  }
+  },
+  wind_speed: number
 }
 type ForecastResponse = {
   dt: number,
@@ -69,7 +70,8 @@ export class ApiService {
           feels_like: this.kelvinToCelsius(data.main.feels_like),
           temp_min: this.kelvinToCelsius(data.main.temp_min),
           temp_max: this.kelvinToCelsius(data.main.temp_max),
-          weather: data.weather[0]
+          weather: data.weather[0],
+          wind_speed: data.wind.speed
       }
       return output;
     })
