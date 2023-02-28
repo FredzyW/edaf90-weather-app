@@ -1,13 +1,6 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
 import { environment } from 'environment';
-type WeatherResponse = {
-  main: [
-    {
-      feels_like: number
-    }
-  ]
-}
 
 type Weather = {
   temp: number,
