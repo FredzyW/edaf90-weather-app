@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WeatherComponent } from './weather/weather.component';
 import { ForecastComponent } from './forecast/forecast.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatGridListModule} from '@angular/material/grid-list';
 import { InputComponent } from './input/input.component';
 import {MatInputModule} from '@angular/material/input'; 
 import {MatIconModule} from '@angular/material/icon';
@@ -24,8 +26,10 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MatInputModule,
     BrowserAnimationsModule,
+    MatCardModule,
+    MatGridListModule,
+    MatInputModule,
     MatIconModule,
     FormsModule,
     HttpClientModule,

@@ -1,0 +1,42 @@
+mat-card {
+    display: flex;
+    justify-content: center;
+    
+    width: 40%;
+
+    margin: 2vh;
+}
+
+mat-card-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2vh;
+}
+
+mat-card-title > * {
+    margin-right: 2vh;
+}
+
+
+.weather-attribute {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    height: fit-content;
+
+    align-items: center;
+}
+
+.tile-value {
+    height: 8vh;
+    width: 10vh;
+    
+    border: solid;
+    border-radius: 4vh;
+
+    text-align: center;
+    line-height: 8vh;
+
+    padding: .5vh;
+}

@@ -1,3 +1,4 @@
-<div class="">
-    <app-input (city)="onChange($event)"></app-input>
+<div>
+  <app-input (city)="onChange($event)"></app-input>
+  <app-weather [location]="currentCity" />
 </div>

@@ -105,7 +105,6 @@ export class ApiService {
           'Content-Type': "application/json"
         }
       }).then(response => {
-        // console.log(
         return (
         response.data?.list
         ?.map((value: ForecastResponse) => value)

@@ -1,1 +1,30 @@
-<p>weather works!</p>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            <img src={{iconSrc}} width="50" />
+            {{location}}
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-grid-list cols="3" rowHeight="3:2">
+            <mat-grid-tile>
+                <div class="weather-attribute">
+                    <p>Actual temperature</p>
+                    <p class="tile-value">{{actualTemp}} °C</p>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <div class="weather-attribute">
+                    <p>Feels like</p>
+                    <p class="tile-value">{{feelslikeTemp}} °C</p>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile id="current-wind-speed">
+                <div class="weather-attribute">
+                    <p>Wind speed</p>
+                    <p class="tile-value">{{windSpeed}} m/s</p>
+                </div>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </mat-card-content>
+</mat-card>
