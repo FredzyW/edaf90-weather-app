@@ -37,6 +37,6 @@ export class InputComponent {
   }
 
   changeCity() {
-    this.city.emit(this.value);
+    this.city.emit(this.value.split(",")[0]);
   }
 }
