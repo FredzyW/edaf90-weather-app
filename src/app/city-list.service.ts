@@ -13,7 +13,7 @@ export class CityListService {
     .subscribe(
       data => {
         let rows = data.split("\n");
-        (rows.map(row => this.allCities.push(row.split(",")[0])));
+        (rows.map(row => this.allCities.push(`${row.split(",")[0]}, ${row.split(",")[1]}`)));
       }
     ))
   }
