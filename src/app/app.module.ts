@@ -9,9 +9,10 @@ import { ForecastComponent } from './forecast/forecast.component';
 import { InputComponent } from './input/input.component';
 import {MatInputModule} from '@angular/material/input'; 
 import {MatIconModule} from '@angular/material/icon';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule } from '@angular/common/http';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+// import {FormsModule} from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatIconModule,
     FormsModule,
     HttpClientModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

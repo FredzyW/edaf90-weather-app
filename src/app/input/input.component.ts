@@ -1,14 +1,8 @@
 import { Component,Output, EventEmitter } from '@angular/core';
-// import { EventEmitter } from 'rxjs/internal/observable/fromEvent';
-// declare function require(name: string): any;
+import {FormControl} from "@angular/forms"
 import { ApiService } from '../api.service';
-// import * as cities from "../../../node_modules/@types/all-the-cities";
-// import * as cities from "all-the-cities";
-import { HttpClient } from '@angular/common/http';
 import { CityListService } from '../city-list.service';
-// const cities = require('all-the-cities');
-import {Observable, of} from 'rxjs';
-
+import { map, Observable, startWith } from 'rxjs';
 
 @Component({
   selector: 'app-input',
@@ -16,15 +10,30 @@ import {Observable, of} from 'rxjs';
   styleUrls: ['./input.component.css']
 })
 export class InputComponent {
+  myControl = new FormControl('');
   @Output() city = new EventEmitter<string>();
   value = ""
-  allCities: Observable<ArrayBuffer>;
-  constructor(public apiService: ApiService, private cityListService: CityListService) {
-    if(this.cityListService.getAllCities()) {
-      this.allCities = cityListService.getAllCities();
+  allCities: string[];
+  filteredCities: Observable<string[]>;
+
+  ngOnInit() {
+    this.filteredCities = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value || '')),
+    );
+  }
+
+  private _filter(value: string): string[] {
+    if(value.length >= 2) {
+      const filterValue = value.toLowerCase();
+      return this.allCities.filter(option => option.toLowerCase().startsWith(filterValue));
     } else {
-      this.allCities = of(new ArrayBuffer(0));
+      return [];
     }
+  }
+
+  constructor(public apiService: ApiService, public cityListService: CityListService) {
+    this.allCities = cityListService.getAllCities();
   }
 
   changeCity() {
