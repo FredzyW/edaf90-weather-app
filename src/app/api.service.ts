@@ -89,7 +89,7 @@ export class ApiService {
     return time.includes("12:00:00") ? true : false;
   }
 
-  getForecastByCity(city: string) {
+  getForecastByCity(city: string): Promise<Weather[]|void> {
     return axios({
       url: `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${environment.apiKey}`,
       method: "POST", 
@@ -98,7 +98,7 @@ export class ApiService {
       }
     }).then(value => {
       const coords = value.data?.coord;
-      axios({
+      return axios({
         url: `http://api.openweathermap.org/data/2.5/forecast?lat=${coords.lat}&lon=${coords.lon}&appid=${environment.apiKey} `,
         method: "POST",
         headers: {
@@ -114,7 +114,8 @@ export class ApiService {
           feels_like: this.kelvinToCelsius(value.main.feels_like),
           temp_min: this.kelvinToCelsius(value.main.temp_min),
           temp_max: this.kelvinToCelsius(value.main.temp_max),
-          weather: value.weather[0]
+          weather: value.weather[0],
+          wind_speed: value.wind.speed
         }))
         )
       }).catch(e => {
