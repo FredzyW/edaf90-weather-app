@@ -10,6 +10,8 @@ import { InputComponent } from './input/input.component';
 import {MatInputModule} from '@angular/material/input'; 
 import {MatIconModule} from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
+import {HttpClientModule } from '@angular/common/http';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { FormsModule } from '@angular/forms';
     MatInputModule,
     BrowserAnimationsModule,
     MatIconModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    MatAutocompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]
