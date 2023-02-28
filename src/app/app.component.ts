@@ -29,9 +29,6 @@ export class AppComponent {
   }
 
   onChange(city: string) {
-    console.log(city)
     this.apiService.getWeatherByCity(city).then(value => this.currentCity = value).then(value => console.log(this.currentCity))
-    // this.apiService.getWeatherByCity(city).then((value => console.log(value)))
-    // console.log(this.currentCity)
   }
 }
