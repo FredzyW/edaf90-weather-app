@@ -52,8 +52,9 @@ export class WeatherComponent {
         let weather = data as Weather;
 
         if (!weather) {
-          weather = this.tallinnWeather;
-          this._location = "Tallinn";
+          return;
+          // weather = this.tallinnWeather;
+          // this._location = "Tallinn";
         }
 
         this.actualTemp = `${weather.temp.toFixed(1)}`;
