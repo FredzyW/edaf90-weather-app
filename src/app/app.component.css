@@ -5,5 +5,25 @@
    grid-template-columns: 50% 50%;
 }
 
+.titles {
+    display: grid;
+   grid-template-areas: "weather-title-area  favorite-title-area";
+   grid-template-columns: 50% 50%;
+}
+
  app-weather { grid-area: weather-area}
  app-favorite-cities { grid-area: favorite-cities-area}
+ .weather.title { 
+    grid-area: weather-title-area;
+}
+ .favorite-title { 
+    grid-area: favorite-title-area;
+}
+
+.display-1 {
+    display: flex;
+    font-size: xx-large;
+    justify-content: center;
+    margin-left: 2vh;
+    margin-top: 2vh;
+}
