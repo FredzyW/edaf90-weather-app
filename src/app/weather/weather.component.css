@@ -3,6 +3,8 @@ mat-card {
     justify-content: center;
     
     width: 40%;
+
+    margin: 2vh;
 }
 
 mat-card-title {
@@ -28,11 +30,13 @@ mat-card-title > * {
 
 .tile-value {
     height: 8vh;
-    width: 8vh;
+    width: 10vh;
     
     border: solid;
     border-radius: 4vh;
 
     text-align: center;
     line-height: 8vh;
+
+    padding: .5vh;
 }
