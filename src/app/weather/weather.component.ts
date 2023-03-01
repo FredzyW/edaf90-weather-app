@@ -44,7 +44,7 @@ export class WeatherComponent {
   }
 
   @Input() set location(val: string) {
-    this._location = val;
+    this._location = val[0]?.toUpperCase() + val.substring(1)?.toLowerCase();
 
     this.apiService
       .getWeatherByCity(this._location)
