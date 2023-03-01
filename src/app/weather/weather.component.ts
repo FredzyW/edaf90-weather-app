@@ -72,11 +72,7 @@ export class WeatherComponent {
     return this._location;
   }
 
-<<<<<<< HEAD
-  addToFavorites(location: string): void {
-=======
   addToFavorites(location: string) : void {
->>>>>>> origin/main
     this.favoriteCitiesService.addToFavorites(location);
   }
 }
