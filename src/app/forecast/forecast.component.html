@@ -1,10 +1,12 @@
-
 <div>
-    <mat-grid-list cols="5">
-        <mat-grid-tile>1</mat-grid-tile>
-        <mat-grid-tile>2</mat-grid-tile>
-        <mat-grid-tile>3</mat-grid-tile>
-        <mat-grid-tile>4</mat-grid-tile>
-        <mat-grid-tile>5</mat-grid-tile>
+    <mat-grid-list cols="5" rowHeight="2:3">
+        <mat-grid-tile *ngFor="let f of forecast">
+            <mat-grid-tile-header>
+                <p>{{f.date.split("-").slice(1).reverse().join("/")}}</p>
+            </mat-grid-tile-header>
+            <div class="container">
+                <img src={{getImageLink(f.weather.icon)}} width="100" />
+            </div>
+        </mat-grid-tile>
     </mat-grid-list>
 </div>

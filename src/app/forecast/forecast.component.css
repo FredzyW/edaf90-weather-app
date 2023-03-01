@@ -1,5 +1,13 @@
-
 mat-grid-list {
     border: solid;
     border-color: coral;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+}
+
+img {
+    padding-top: 8vh;
 }
