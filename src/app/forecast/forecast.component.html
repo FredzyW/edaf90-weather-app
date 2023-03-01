@@ -1,11 +1,12 @@
 <div>
-    <mat-grid-list cols="5" rowHeight="2:3">
-        <mat-grid-tile *ngFor="let f of forecast">
+    <mat-grid-list role="list" cols="5" rowHeight="2:3">
+        <mat-grid-tile role="listitem" *ngFor="let f of forecast">
             <mat-grid-tile-header>
                 <p>{{f.date.split("-").slice(1).reverse().join("/")}}</p>
             </mat-grid-tile-header>
             <div class="container">
                 <img src={{getImageLink(f.weather.icon)}} width="100" />
+                <p>{{f.temp.toFixed(1)}} °C</p>
             </div>
         </mat-grid-tile>
     </mat-grid-list>
