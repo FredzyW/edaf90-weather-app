@@ -1,6 +1,11 @@
-mat-grid-list {
-    border: solid;
-    border-color: coral;
+mat-card {
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+}
+
+mat-card-subtitle {
+    padding: 2vh;
 }
 
 .container {
