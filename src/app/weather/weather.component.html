@@ -1,7 +1,7 @@
 <mat-card>
     <mat-card-header>
         <mat-card-title>
-            <img src={{iconSrc}} width="50" />
+            <img mat-card-image src={{iconSrc}} width="50" />
             {{location}}
         </mat-card-title>
         <button mat-icon-button color="warn" (click)="addToFavorites(location)" class="favorite-icon">
@@ -29,5 +29,6 @@
                 </div>
             </mat-grid-tile>
         </mat-grid-list>
+        <app-forecast [location]="location" />
     </mat-card-content>
 </mat-card>

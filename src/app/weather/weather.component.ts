@@ -52,9 +52,9 @@ export class WeatherComponent {
         let weather = data as Weather;
 
         if (!weather) {
+          weather = this.tallinnWeather;
+          this._location = "Tallinn";
           return;
-          // weather = this.tallinnWeather;
-          // this._location = "Tallinn";
         }
 
         this.actualTemp = `${weather.temp.toFixed(1)}`;
@@ -72,7 +72,11 @@ export class WeatherComponent {
     return this._location;
   }
 
+<<<<<<< HEAD
+  addToFavorites(location: string): void {
+=======
   addToFavorites(location: string) : void {
+>>>>>>> origin/main
     this.favoriteCitiesService.addToFavorites(location);
   }
 }

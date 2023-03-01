@@ -13,7 +13,8 @@ type Weather = {
     id: number,
     main: string
   },
-  wind_speed: number
+  wind_speed: number,
+  date: string
 }
 type ForecastResponse = {
   dt: number,
@@ -56,49 +57,51 @@ export class ApiService {
   ngOnInit() {
   }
 
-  getWeatherByCity(city: string): Promise<Weather|void> {
+  getWeatherByCity(city: string): Promise<Weather | void> {
     return axios({
       url: `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${environment.apiKey}`,
-      method: "POST", 
+      method: "POST",
       headers: {
         'Content-Type': "application/json"
       }
     }).then(response => {
       const data = response.data;
+      const unixDate = new Date(data.dt);
       const output: Weather = {
-          temp: this.kelvinToCelsius(data.main.temp),
-          feels_like: this.kelvinToCelsius(data.main.feels_like),
-          temp_min: this.kelvinToCelsius(data.main.temp_min),
-          temp_max: this.kelvinToCelsius(data.main.temp_max),
-          weather: data.weather[0],
-          wind_speed: data.wind.speed
+        temp: this.kelvinToCelsius(data.main.temp),
+        feels_like: this.kelvinToCelsius(data.main.feels_like),
+        temp_min: this.kelvinToCelsius(data.main.temp_min),
+        temp_max: this.kelvinToCelsius(data.main.temp_max),
+        weather: data.weather[0],
+        wind_speed: data.wind.speed,
+        date: `${unixDate.getDate()}`
       }
       return output;
     })
-    .catch(e => {
-      // throw e;
-      console.error(e);
-    });
+      .catch(e => {
+        // throw e;
+        console.error(e);
+      });
   }
 
   kelvinToCelsius(degrees: number) {
-    return (degrees-273.15);
+    return (degrees - 273.15);
   }
 
   isTwelveOClock(time: string) {
     return time.includes("12:00:00") ? true : false;
   }
 
-  getForecastByCity(city: string) {
+  getForecastByCity(city: string): Promise<Weather[] | void> {
     return axios({
       url: `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${environment.apiKey}`,
-      method: "POST", 
+      method: "POST",
       headers: {
         'Content-Type': "application/json"
       }
     }).then(value => {
       const coords = value.data?.coord;
-      axios({
+      return axios({
         url: `http://api.openweathermap.org/data/2.5/forecast?lat=${coords.lat}&lon=${coords.lon}&appid=${environment.apiKey} `,
         method: "POST",
         headers: {
@@ -106,23 +109,25 @@ export class ApiService {
         }
       }).then(response => {
         return (
-        response.data?.list
-        ?.map((value: ForecastResponse) => value)
-        .filter((value: ForecastResponse) => this.isTwelveOClock(value?.['dt_txt']))
-        .map((value: ForecastResponse) => ({
-          temp: this.kelvinToCelsius(value.main.temp),
-          feels_like: this.kelvinToCelsius(value.main.feels_like),
-          temp_min: this.kelvinToCelsius(value.main.temp_min),
-          temp_max: this.kelvinToCelsius(value.main.temp_max),
-          weather: value.weather[0]
-        }))
+          response.data?.list
+            ?.map((value: ForecastResponse) => value)
+            .filter((value: ForecastResponse) => this.isTwelveOClock(value?.['dt_txt']))
+            .map((value: ForecastResponse) => ({
+              temp: this.kelvinToCelsius(value.main.temp),
+              feels_like: this.kelvinToCelsius(value.main.feels_like),
+              temp_min: this.kelvinToCelsius(value.main.temp_min),
+              temp_max: this.kelvinToCelsius(value.main.temp_max),
+              weather: value.weather[0],
+              wind_speed: value.wind.speed,
+              date: value.dt_txt.split(" ")[0] // extract yyyy-mm-dd from 'yyyy-mm-dd hh:mm:mm' format
+            }))
         )
       }).catch(e => {
         throw e;
       });
     })
-    .catch(e => {
-      console.error(e);
-    });
+      .catch(e => {
+        console.error(e);
+      });
   }
 }

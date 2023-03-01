@@ -1,0 +1,20 @@
+mat-card {
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+}
+
+mat-card-subtitle {
+    padding: 2vh;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+img {
+    padding-top: 8vh;
+}
