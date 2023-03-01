@@ -1,4 +1,19 @@
 <div>
   <app-input (city)="onChange($event)"></app-input>
-  <app-weather [location]="currentCity" />
+  <div class="titles">
+    <div class="weather-title">
+      <h1 class="display-1">
+        Weather
+      </h1>
+    </div>
+    <div class="favorite-title">
+      <h1 class="display-1">
+        Favorites
+      </h1>
+    </div>
+  </div>
+  <div class="grid-container">
+    <app-weather [location]="currentCity" />
+    <app-favorite-cities></app-favorite-cities>
+  </div>
 </div>

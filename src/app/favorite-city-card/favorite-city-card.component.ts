@@ -17,11 +17,11 @@ type Weather = {
 }
 
 @Component({
-  selector: 'app-weather',
-  templateUrl: './weather.component.html',
-  styleUrls: ['./weather.component.css']
+  selector: 'app-favorite-city-card',
+  templateUrl: './favorite-city-card.component.html',
+  styleUrls: ['./favorite-city-card.component.css']
 })
-export class WeatherComponent {
+export class FavoriteCityCardComponent {
   private _location: string;
   actualTemp: string;
   feelslikeTemp: string;
@@ -31,16 +31,7 @@ export class WeatherComponent {
   currentCitites: string[] | null;
 
   constructor(private apiService: ApiService, private favoriteCitiesService: FavoriteCitiesService) {
-    this.apiService.getWeatherByCity("Tallinn")
-      .then(data => {
-        this.tallinnWeather = data as Weather;
-
-        this.actualTemp = this.tallinnWeather.temp.toFixed(2);
-        this.feelslikeTemp = this.tallinnWeather.feels_like.toFixed(2);
-        this.windSpeed = this.tallinnWeather.wind_speed.toFixed(2);
-        this.iconSrc = `http://openweathermap.org/img/wn/${this.tallinnWeather.weather.icon}@2x.png`
-        this._location = "Tallinn";
-      });
+    
   }
 
   @Input() set location(val: string) {
@@ -50,13 +41,6 @@ export class WeatherComponent {
       .getWeatherByCity(this._location)
       .then(data => {
         let weather = data as Weather;
-
-        if (!weather) {
-          return;
-          // weather = this.tallinnWeather;
-          // this._location = "Tallinn";
-        }
-
         this.actualTemp = `${weather.temp.toFixed(1)}`;
         this.feelslikeTemp = `${weather.feels_like.toFixed(1)}`;
         this.windSpeed = `${weather.wind_speed.toFixed(1)}`;
@@ -72,7 +56,7 @@ export class WeatherComponent {
     return this._location;
   }
 
-  addToFavorites(location: string) : void {
-    this.favoriteCitiesService.addToFavorites(location);
+  removeFromFavorites(location: string) : void {
+    this.favoriteCitiesService.removeFromFavorites(location);
   }
 }
