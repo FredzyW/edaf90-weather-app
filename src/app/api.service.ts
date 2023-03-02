@@ -133,7 +133,7 @@ export class ApiService {
               temp_max: this.kelvinToCelsius(value.main.temp_max),
               weather: value.weather[0],
               wind_speed: value.wind.speed,
-              date: value.dt_txt.split(" ")[0] // extract yyyy-mm-dd from 'yyyy-mm-dd hh:mm:mm' format
+              date: value.dt_txt.split(" ")[0] 
             }))
         )
       })

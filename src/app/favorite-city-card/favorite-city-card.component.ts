@@ -36,7 +36,6 @@ export class FavoriteCityCardComponent {
 
   @Input() set location(val: string) {
     this._location = val;
-
     this.apiService
       .getWeatherByCity(this._location)
       .then(data => {

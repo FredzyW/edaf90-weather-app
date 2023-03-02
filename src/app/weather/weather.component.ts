@@ -44,9 +44,10 @@ export class WeatherComponent {
   }
 
   @Input() set location(val: string) {
-
     if (!val) {
       this._location = "Tallinn";
+    } else {
+      this._location = val[0]?.toUpperCase() + val.substring(1)?.toLowerCase();
     }
 
     this.apiService
