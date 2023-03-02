@@ -54,7 +54,6 @@ export class WeatherComponent {
       .getWeatherByCity(this._location)
       .then(data => {
         let weather = data as Weather;
-        console.log(data);
         this._location = val[0]?.toUpperCase() + val.substring(1)?.toLowerCase();
         this.actualTemp = `${weather.temp.toFixed(1)}`;
         this.feelslikeTemp = `${weather.feels_like.toFixed(1)}`;
