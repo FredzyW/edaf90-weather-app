@@ -5,11 +5,14 @@
         matInput 
         [formControl]="myControl"
         type="text" 
-        placeholder="Enter city:" 
+        placeholder="View weather for a city" 
         (keyup.enter)="changeCity()"
         >
         <button mat-button *ngIf="myControl.value" matSuffix (click)="myControl.setValue('')">
             <mat-icon>close</mat-icon>
+        </button>
+        <button mat-button matSuffix (click)="changeCity()">
+            <mat-icon>search</mat-icon>
         </button>
     </mat-form-field>
     <mat-autocomplete #auto="matAutocomplete">
