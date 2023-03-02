@@ -10,11 +10,6 @@ import { BehaviorSubject } from 'rxjs';
 export class FavoriteCitiesComponent {
   favoriteCities: string[];
 
-  // ngOnInit() {
-  //   this.favoriteCities = JSON.parse(localStorage.getItem('cities') || '');
-  //   console.log(this.favoriteCities);
-  // }
-
   constructor(private favoriteCitiesService: FavoriteCitiesService) {
     favoriteCitiesService.getFavoriteCities().subscribe(
       updatedCities => {
@@ -22,6 +17,5 @@ export class FavoriteCitiesComponent {
       }
     );
     this.favoriteCities = JSON.parse(localStorage.getItem('cities') || '[]')
-    // this.favoriteCities = favoriteCitiesService.getFavoriteCities().getValue();
   }
 }

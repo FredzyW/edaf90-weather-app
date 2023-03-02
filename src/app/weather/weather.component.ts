@@ -44,27 +44,29 @@ export class WeatherComponent {
   }
 
   @Input() set location(val: string) {
-    this._location = val[0]?.toUpperCase() + val.substring(1)?.toLowerCase();
+    if (!val) {
+      this._location = "Tallinn";
+    } else {
+      this._location = val[0]?.toUpperCase() + val.substring(1)?.toLowerCase();
+    }
 
     this.apiService
       .getWeatherByCity(this._location)
       .then(data => {
         let weather = data as Weather;
-
-        if (!weather) {
-          weather = this.tallinnWeather;
-          this._location = "Tallinn";
-          return;
-        }
-
+        this._location = val[0]?.toUpperCase() + val.substring(1)?.toLowerCase();
         this.actualTemp = `${weather.temp.toFixed(1)}`;
         this.feelslikeTemp = `${weather.feels_like.toFixed(1)}`;
         this.windSpeed = `${weather.wind_speed.toFixed(1)}`;
         this.iconSrc = `http://openweathermap.org/img/wn/${weather.weather.icon}@2x.png`
       })
       .catch(e => {
-        this._location = "";
-        console.error(e)
+        this._location = "Tallinn";
+        this.actualTemp = `${this.tallinnWeather.temp.toFixed(1)}`;
+        this.feelslikeTemp = `${this.tallinnWeather.feels_like.toFixed(1)}`;
+        this.windSpeed = `${this.tallinnWeather.wind_speed.toFixed(1)}`;
+        this.iconSrc = `http://openweathermap.org/img/wn/${this.tallinnWeather.weather.icon}@2x.png`
+        return;
       });
   }
 
@@ -72,7 +74,7 @@ export class WeatherComponent {
     return this._location;
   }
 
-  addToFavorites(location: string) : void {
+  addToFavorites(location: string): void {
     this.favoriteCitiesService.addToFavorites(location);
   }
 }

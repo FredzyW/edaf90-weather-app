@@ -5,7 +5,6 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class FavoriteCitiesService {
-
   currentCities: string[];
   currentCities$ = new BehaviorSubject<string[]>([]);
 
@@ -23,7 +22,6 @@ export class FavoriteCitiesService {
       this.currentCities.push(location)
       this.currentCities$.next(this.currentCities);
     }
-    
     localStorage.setItem('cities', JSON.stringify(this.currentCities));
   }
 
@@ -33,7 +31,6 @@ export class FavoriteCitiesService {
       this.currentCities.splice(this.currentCities.indexOf(location), 1);
       this.currentCities$.next(this.currentCities);
     }
-    
     localStorage.setItem('cities', JSON.stringify(this.currentCities));
   }
 }

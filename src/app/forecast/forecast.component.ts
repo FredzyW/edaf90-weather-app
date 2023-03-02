@@ -39,7 +39,14 @@ export class ForecastComponent {
       .then(data => {
         this.forecast = data as Weather[];
       })
-      .catch(e => console.error(e));
+      .catch(e => {
+        this._location = "Tallinn";
+        this.apiService
+          .getForecastByCity(this._location)
+          .then(data => {
+            this.forecast = data as Weather[];
+          })
+      })
   }
 
   getImageLink(icon: string) {
