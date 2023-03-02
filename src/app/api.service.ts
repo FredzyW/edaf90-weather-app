@@ -64,7 +64,13 @@ export class ApiService {
       headers: {
         'Content-Type': "application/json"
       }
-    }).then(response => {
+    })
+    .then(response => {
+      if (response.status !== 200)
+        throw new Error("Could not fetch weather for city");
+      return response;
+    })
+    .then(response => {
       const data = response.data;
       const unixDate = new Date(data.dt);
       const output: Weather = {
@@ -77,11 +83,7 @@ export class ApiService {
         date: `${unixDate.getDate()}`
       }
       return output;
-    })
-      .catch(e => {
-        // throw e;
-        console.error(e);
-      });
+    });
   }
 
   kelvinToCelsius(degrees: number) {
@@ -99,7 +101,13 @@ export class ApiService {
       headers: {
         'Content-Type': "application/json"
       }
-    }).then(value => {
+    })
+    .then(response => {
+      if (response.status !== 200)
+        throw new Error("Could not fetch forecast for city");
+      return response;
+    })
+    .then(value => {
       const coords = value.data?.coord;
       return axios({
         url: `http://api.openweathermap.org/data/2.5/forecast?lat=${coords.lat}&lon=${coords.lon}&appid=${environment.apiKey} `,
@@ -107,7 +115,13 @@ export class ApiService {
         headers: {
           'Content-Type': "application/json"
         }
-      }).then(response => {
+      })
+      .then(response => {
+        if (response.status !== 200)
+          throw new Error("Could not fetch forecast for city")
+        return response;
+      })
+      .then(response => {
         return (
           response.data?.list
             ?.map((value: ForecastResponse) => value)
@@ -122,12 +136,7 @@ export class ApiService {
               date: value.dt_txt.split(" ")[0] // extract yyyy-mm-dd from 'yyyy-mm-dd hh:mm:mm' format
             }))
         )
-      }).catch(e => {
-        throw e;
-      });
+      })
     })
-      .catch(e => {
-        console.error(e);
-      });
   }
 }
