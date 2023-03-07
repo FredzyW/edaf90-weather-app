@@ -110,7 +110,7 @@ export class ApiService {
     .then(value => {
       const coords = value.data?.coord;
       return axios({
-        url: `http://api.openweathermap.org/data/2.5/forecast?lat=${coords.lat}&lon=${coords.lon}&appid=${environment.apiKey} `,
+        url: `https://api.openweathermap.org/data/2.5/forecast?lat=${coords.lat}&lon=${coords.lon}&appid=${environment.apiKey} `,
         method: "POST",
         headers: {
           'Content-Type': "application/json"
