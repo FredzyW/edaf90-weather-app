@@ -125,7 +125,7 @@ export class ApiService {
         return (
           response.data?.list
             ?.map((value: ForecastResponse) => value)
-            .filter((value: ForecastResponse) => this.isTwelveOClock(value?.['dt_txt']))
+            // .filter((value: ForecastResponse) => this.isTwelveOClock(value?.['dt_txt']))
             .map((value: ForecastResponse) => ({
               temp: this.kelvinToCelsius(value.main.temp),
               feels_like: this.kelvinToCelsius(value.main.feels_like),
@@ -133,7 +133,8 @@ export class ApiService {
               temp_max: this.kelvinToCelsius(value.main.temp_max),
               weather: value.weather[0],
               wind_speed: value.wind.speed,
-              date: value.dt_txt.split(" ")[0] 
+              date: value.dt_txt.split(" ")[0],
+              time: value.dt_txt.split(" ")[1]
             }))
         )
       })

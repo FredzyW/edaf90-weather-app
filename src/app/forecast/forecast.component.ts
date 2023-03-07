@@ -13,7 +13,8 @@ type Weather = {
     main: string
   },
   wind_speed: number,
-  date: string
+  date: string,
+  time: string
 }
 
 @Component({
@@ -24,6 +25,8 @@ type Weather = {
 export class ForecastComponent {
   private _location: string;
   forecast: Weather[]
+  detailedForecast: Weather[]
+  details: boolean;
 
   constructor(private apiService: ApiService) { }
 
@@ -33,23 +36,31 @@ export class ForecastComponent {
 
   @Input() set location(val: string) {
     this._location = val;
+    this.details = false;
+    
 
     this.apiService
       .getForecastByCity(this._location)
       .then(data => {
-        this.forecast = data as Weather[];
+        this.detailedForecast = data as Weather[];
+        this.forecast = this.detailedForecast.filter(weather => this.apiService.isTwelveOClock(weather.time))
       })
       .catch(e => {
         this._location = "Tallinn";
         this.apiService
           .getForecastByCity(this._location)
           .then(data => {
-            this.forecast = data as Weather[];
+            this.detailedForecast = data as Weather[];
+            this.forecast = this.detailedForecast.filter(weather => this.apiService.isTwelveOClock(weather.time))
           })
       })
   }
 
   getImageLink(icon: string) {
     return `https://openweathermap.org/img/wn/${icon}@2x.png`;
+  }
+
+  showDetails() {
+    this.details = !this.details;
   }
 }
