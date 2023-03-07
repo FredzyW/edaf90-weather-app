@@ -1,11 +1,16 @@
-<div class="outline" *ngIf="forecast">
+<div class="outline" *ngIf="forecast" >
+
     <mat-card class="mat-elevation-z2">
+
         <mat-card-subtitle>Forecast</mat-card-subtitle>
         <mat-card-content>
             <mat-grid-list role="list" cols="5" rowHeight="2:3">
                 <mat-grid-tile role="listitem" *ngFor="let f of forecast">
                     <mat-grid-tile-header>
-                        <p>{{f.date.split("-").slice(1).reverse().join("/")}}</p>
+                        <p>
+                            {{f.date.split("-").slice(1).reverse().join("/")}}
+                        </p>
+                        
                     </mat-grid-tile-header>
                     <div class="container">
                         <img src={{getImageLink(f.weather.icon)}} width="100" />
@@ -13,6 +18,30 @@
                     </div>
                 </mat-grid-tile>
             </mat-grid-list>
+            <button mat-stroked-button (click)="showDetails()"> {{!details ? "Show Detailed Forecast" : "Hide Detailed Forecast"}}</button>
         </mat-card-content>
+
+        <div class="detailedForecastContainer" *ngIf="details">
+            <mat-card-subtitle> Detailed Forecast </mat-card-subtitle>
+            <mat-card-content>
+                <mat-grid-list role="list" cols="1" rowHeight="3:1" >
+                    <mat-grid-tile *ngFor="let f of detailedForecast" class = "detailedForecastTile">
+                        <mat-grid-tile-header class = "detailedForecastHeader">
+                            <p>
+                                {{f.date.split("-").slice(1).reverse().join("/") + "  " + f.time}}
+                            </p>
+                        </mat-grid-tile-header>
+
+                        <div class="detailedForecast">
+                            <p>Weather: {{f.weather.description}}</p>
+                            <p>Temperature: {{f.temp.toFixed(1)}} °C</p>
+                            <p>Windspeed: {{f.wind_speed}}</p>
+                        </div>
+
+                    </mat-grid-tile>
+                </mat-grid-list>
+            </mat-card-content>
+        </div>
+
     </mat-card>
 </div>

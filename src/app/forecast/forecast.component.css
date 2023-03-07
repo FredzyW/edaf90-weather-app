@@ -18,3 +18,26 @@ mat-card-subtitle {
 img {
     padding-top: 8vh;
 }
+
+.detailedForecastContainer {
+    height: 30vh;
+    overflow-y: scroll;
+}
+
+.detailedForecastHeader {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.detailedForecast {
+    margin-top: 7%;
+    display: flex;
+    justify-content: space-around;
+    height: auto;
+    flex-direction: column;
+    align-items: flex-start;
+    float: left;
+}
+
